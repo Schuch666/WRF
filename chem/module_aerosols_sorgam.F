@@ -4608,6 +4608,11 @@ END SUBROUTINE sorgam_depdriver
 
         if(blkta(1).ge.233.15.and.blkrh(1).ge.0.1)then
            CALL klpnuc(blkta(1),blkrh(1),vapor1,dndt(1),dmdt(1),so4rat(1))
+
+! included by D. Schuch - 2024
+! set limit for dmdt to avoid negative values 
+           dmdt(1) = max(dmdt(1),conmin)
+
         else
            dndt(1)=0.
            dmdt(1)=0.
